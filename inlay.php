@@ -16,6 +16,10 @@ defined( 'ABSPATH' ) or die();
 // CiviCRM admin settings screen.
 add_action('admin_menu', 'inlay_admin_menu');
 add_action('admin_init', 'inlay_admin_init');
+
+// Add an action link pointing to the options page.
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'inlay_admin_add_action_links');
+
 /**
  * Implements admin_menu hook.
  */
@@ -23,12 +27,26 @@ function inlay_admin_menu() {
   //                $page_title,                  $menu_title,  $capability,      $menu_slug, $function
   add_options_page('CiviCRM Inlays Integration', 'Inlays',      'manage_options', 'inlay', 'inlay_admin_options');
 }
+
+/**
+ * Add settings action link to the plugins page
+ */
+public function inlay_admin_add_action_links( $links ) {
+
+  return array_merge(
+    array(
+      'settings'	 => '<a href="' . admin_url( 'options-general.php?page=inlay' ) . '">' . __( 'Settings' ) . '</a>',
+    ), $links
+  );
+}
+
 function inlay_admin_init() {
   $settings_group_name = 'inlay';
 
   // optional 3rd arg is validation callback
   register_setting($settings_group_name, 'inlay_url_prefix', ['type' => 'string', 'sanitize_callback' => 'inlay_admin_options_validate_url_prefix']);
 }
+
 /**
  * Provides the options page.
  */
@@ -102,4 +120,3 @@ function inlay_shortcodes($atts) {
   }
   return $output;
 }
-
