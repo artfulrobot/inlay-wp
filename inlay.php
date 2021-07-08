@@ -31,7 +31,7 @@ function inlay_admin_menu() {
 /**
  * Add settings action link to the plugins page
  */
-public function inlay_admin_add_action_links( $links ) {
+function inlay_admin_add_action_links( $links ) {
 
   return array_merge(
     array(
