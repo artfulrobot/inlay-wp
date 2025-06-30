@@ -14,13 +14,7 @@ See the [CiviCRM Inlay extension](https://lab.civicrm.org/extensions/inlay)
 Inlay generates `<script>` tags, but these might be hard to put in the
 right place, so this provides a WordPress shortcode.
 
-e.g. if Inlay gives you code like this:
-
-```
-<script src="https://example.org/sites/default/files/civicrm/inlay-abcdef012345.js" data-inlay-id="abcdef012345" ></script>
-```
-
-Then you can use a shortcode like this: `[inlay id="abcdef012345"]` to place
+Inlay provides shortcodes like this: `[inlay id="abcdef012345"]` to place
 the inlay on your page.
 
 ## How to set it up
