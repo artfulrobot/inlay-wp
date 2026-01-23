@@ -3,7 +3,7 @@
 Plugin Name: CiviCRM Inlay integration
 Plugin URI:  https://artfulrobot.uk
 Description: Provides shortcodes for inlay scripts
-Version:     20201113
+Version:     20260123
 Author:      Rich Lott / Artful Robot
 Author URI:  https://artfulrobot.uk
 License:     AGPL-3.0
