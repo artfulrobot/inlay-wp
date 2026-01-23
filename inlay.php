@@ -81,9 +81,9 @@ function inlay_admin_options() {
  */
 function inlay_admin_options_validate_url_prefix($input) {
 
-  if (preg_match('@<script src="([^"]+/)(?:inlay-[a-z0-9]+\.js") .*</script>$@s', $input, $matches)) {
+  if (preg_match('@<script(?: defer)? src="([^"]+/)(?:inlay-[a-z0-9]+\.js") .*</script>$@s', $input, $matches)) {
     // They pasted a whole inlay script in, e.g.
-    // <script src="https://example.org/sites/default/files/civicrm/inlay-abcdef012345.js" data-inlay-id="abcdef012345" ></script>
+    // <script defer src="https://example.org/sites/default/files/civicrm/inlay-abcdef012345.js" data-inlay-id="abcdef012345" ></script>
     // Just extract the bit we need.
     $input = $matches[1];
   }
@@ -109,7 +109,7 @@ function inlay_shortcodes($atts) {
   if (preg_match('/^[a-z0-9]+$/', $atts['id'])) {
     $url = get_option( 'inlay_url_prefix', '' );
     if ($url) {
-      $output = "<script src='{$url}inlay-$atts[id].js' data-inlay-id='$atts[id]'></script><noscript>(This part of the page requires Javascript)</noscript>";
+      $output = "<script defer src='{$url}inlay-$atts[id].js' data-inlay-id='$atts[id]'></script><noscript>(This part of the page requires Javascript)</noscript>";
     }
     else {
       $output = "(A misconfiguration is preventing the form from showing - check inlay plugin settings)";
